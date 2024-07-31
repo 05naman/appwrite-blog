@@ -55,27 +55,28 @@ export default function Post() {
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
-                        className="rounded-xl max-w-full h-auto lg:max-w-lg xl:max-w-xl"
+                        className="rounded-xl w-auto max-h-80 lg:max-w-lg xl:max-w-xl"
                     />
-
-                    {isAuthor && (
-                        <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
-                                </Button>
-                            </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </Button>
-                        </div>
-                    )}
+                   
                 </div>
                 <div className="w-full text-white mb-6">
                     <h1 className="text-3xl mt-10 text-white font-bold">{post.title}</h1>
                 </div>
                 <div className="text-lg">
                     {typeof post.content === 'string' ? parse(post.content) : null}
+                    {isAuthor && (
+                       <div className="flex justify-center items-center mt-4 space-x-3">
+                       <Link to={`/edit-post/${post.$id}`}>
+                           <Button bgColor="bg-green-500" className="mr-3 w-24">
+                               Edit
+                           </Button>
+                       </Link>
+                       <Button bgColor="bg-red-500" onClick={deletePost}>
+                           Delete
+                       </Button>
+                   </div>
+                   
+                    )}
                 </div>
             </Container>
         </div>
