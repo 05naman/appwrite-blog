@@ -5,6 +5,7 @@ import { Button, Input, Logo } from "./index"
 import { useDispatch } from "react-redux"
 import authService from "../appwrite/auth"
 import { useForm } from "react-hook-form"
+import login_image from '../image/login_image.png'
 
 function Login() {
     const navigate = useNavigate()
@@ -27,57 +28,74 @@ function Login() {
     }
 
     return (
-        <div className='flex items-center justify-center w-full mt-28 bg-[#101518] '>
-            <div className={`  w-full max-w-lg bg-gray-100 text-white rounded-xl p-10 border border-black/10 shadow-xl`}>
-                <div className="mb-2 flex justify-center ">
-                    <span className="inline-block w-full max-w-[100px]">
-                        <Logo width="100%" />
-                    </span>
+        <div className="flex justify-center min-h-screen bg-[#101517] text-white">
+            <div className="flex w-full h-full">
+                <div className="hidden md:flex md:w-1/2 justify-center items-center">
+                    <img
+                        src={login_image}
+                        alt="Right Side Image"
+                        className="h-3/4 w-auto mt-10 pb-10"
+                    />
                 </div>
-                <h2 className="text-center text-2xl font-bold leading-tight text-black">Login to your account</h2>
-                <p className="mt-2 text-center text-base text-black">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign Up
-                    </Link>
-                </p>
-                {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form onSubmit={handleSubmit(login)} className='mt-8 text-black '>
-                    <div className='space-y-3'>
-                        <Input
-                            label="Email: "
-                            placeholder="Enter your email"
-                            type="email"
-                            {...register("email", {
-                                required: true,
-                                validate: {
-                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                        "Email address must be a valid address",
-                                }
-                            })}
-                        />
-                        <Input
-                            label="Password: "
-                            type="password"
-                            placeholder="Enter your password"
-                            {...register("password", {
-                                required: true,
-                            })}
-                        />
-                        <div className="flex justify-center">
-                            <Button
-                                type="submit"
-                                className="w-auto bg-[#101518] text-white hover:bg-teal-500 hover:text-white"
-                            >Login</Button>
+
+                <div className="flex items-center justify-center w-full md:w-1/2 bg-[#101518]">
+                    <div className="w-full max-w-xl bg-gray-100 text-white rounded-xl pt-10 pb-10 pl-12 pr-12 border border-black/10 shadow-xl mr-8">
+                        <div className="mb-2 flex justify-center">
+                            <span className="inline-block w-full max-w-[100px]">
+                                <Logo width="100%" />
+                            </span>
                         </div>
+
+                        <h2 className="text-center text-2xl font-bold leading-tight text-black">Login to your account</h2>
+                        <p className="mt-2 text-center text-base text-black">
+                            Don&apos;t have an account?&nbsp;
+                            <Link
+                                to="/signup"
+                                className="font-medium text-primary transition-all duration-200 hover:underline text-black"
+                            >
+                                Sign Up
+                            </Link>
+                        </p>
+
+                        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+
+                        <form onSubmit={handleSubmit(login)} className="mt-8 text-black">
+                            <div className="space-y-3">
+                                <Input
+                                    label="Email: "
+                                    placeholder="Enter your email"
+                                    type="email"
+                                    {...register("email", {
+                                        required: true,
+                                        validate: {
+                                            matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                                "Email address must be a valid address",
+                                        },
+                                    })}
+                                />
+                                <Input
+                                    label="Password: "
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    {...register("password", {
+                                        required: true,
+                                    })}
+                                />
+                                <div className="flex justify-center">
+                                    <Button
+                                        type="submit"
+                                        className="w-32 bg-[#101518] text-white hover:bg-teal-500 hover:text-white"
+                                    >
+                                        Login
+                                    </Button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
 }
 
-export default Login
+export default Login  
